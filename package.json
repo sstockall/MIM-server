@@ -3,17 +3,26 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "migrate": "knex migrate:latest",
+    "dev": "nodemon index",
+    "start": "node index",
+    "seed": "knex seed:run"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.27.2",
+    "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
     "express": "^4.18.1",
-    "nodemon": "^2.0.16"
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^2.1.0",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.16",
+    "passport": "^0.6.0"
   },
-  "devDependencies": {},
   "description": ""
 }
