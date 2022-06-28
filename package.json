@@ -5,8 +5,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "migrate": "knex migrate:latest",
-    "dev": "nodemon index",
-    "start": "node index",
+    "dev": "nodemon server",
+    "start": "node server",
     "seed": "knex seed:run"
   },
   "keywords": [],
@@ -22,7 +22,8 @@
     "knex": "^2.1.0",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.16",
-    "passport": "^0.6.0"
+    "passport": "^0.6.0",
+    "sqlite3": "^5.0.8"
   },
   "description": ""
 }

@@ -12,9 +12,9 @@ require('dotenv').config();
 app.use(express.json());
 app.use(cors());
 
-app.use('./signup', signupRoutes);
-app.use('./login', loginRoutes);
-app.use('./dashboard', dashboardRoutes)
+app.use('/signup', signupRoutes);
+app.use('/login', loginRoutes);
+app.use('/dashboard', dashboardRoutes)
 
 
 app.listen(PORT, () => {
