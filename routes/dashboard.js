@@ -2,7 +2,7 @@ const express = require("express");
 const knex = require('knex')(require('../knexfile'));
 const router = express.Router();
 
-router.route("/:userId")
+router.route("/")
     .get((req, res) => {
         knex('users')
         .join('records', 'users.id', 'records.user_id')
@@ -24,11 +24,8 @@ router.route("/:userId")
         .catch((err) => res.status(400).send(`Error retrieving user info: ${err}`)
         )
     })
-    .post((req, res) => {
 
-    })
-
-router.route('/:userId/records')
+router.route('/records')
     .get((req, res) => {
 
     })
