@@ -27,8 +27,7 @@ router.route('/')
                 { id: user.id, email: user.email },
                 process.env.JWT_KEY
             )
-
-            res.json ({ token })
+            res.json({ token })
         }) 
         .catch((err) => res.status(400).send('Invalid credentials'))   
     })
