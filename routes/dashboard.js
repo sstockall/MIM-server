@@ -1,5 +1,5 @@
 const express = require("express");
-const knex = require('knex')(require('../knexfile').development);
+const knex = require('knex')(require('../knexfile'));
 const router = express.Router();
 
 router.route("/:userId")
