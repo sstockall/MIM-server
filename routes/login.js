@@ -1,5 +1,5 @@
 const express = require("express");
-const { default: knex } = require("knex");
+const knex = require('knex')(require('../knexfile'));
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -16,10 +16,10 @@ router.route('/')
         .where({ email: email })
         .first()
         .then((user) => {
-            const passwordCheck = bcrypt.compareSync(password, user.password);
+            const checkPassword = bcrypt.compareSync(password, user.password);
 
 
-            if (!passwordCheck) {
+            if (!checkPassword) {
                 return res.status(400).send('Invalid password, please try again')
             }
 
