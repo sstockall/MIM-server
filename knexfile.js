@@ -17,7 +17,7 @@ const connections = {
     connection: {
       host: '127.0.0.1',
       user: 'root',
-      ppassword: 'Marcel17',
+      password: 'Marcel17',
       database: 'mim_database',
       charset: 'utf8'
     },
