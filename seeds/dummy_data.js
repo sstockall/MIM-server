@@ -5,7 +5,7 @@ exports.seed = async function(knex) {
   let users = [{
     id:"1jr3-43d-lya",
     username: 'sstock',
-    password: 'Marcel17',
+    password: 'samantha',
     first_name: 'Sam',
     last_name: 'Stockall',
     avatar_url: '',
@@ -13,11 +13,11 @@ exports.seed = async function(knex) {
   }, {
     id:"1jr3-43d-lxz",
     username: 'marceltheshell',
-    password: 'Marcel17',
+    password: 'marcel',
     first_name: 'Marcel',
     last_name: 'Stockall',
     avatar_url: '',
-    email: 'sam.stockall@hotmail.com'
+    email: 'marceltheshell@gmail.com'
   }]
   let records = [{
     id: "12345",
