@@ -26,9 +26,6 @@ router.route("/")
     })
 
 router.route('/records')
-    .get((req, res) => {
-
-    })
     .post((req, res) => {
         const { id, user_id, location, width, length, special_info } = req.body;
         const newMole = { id, user_id, location, width, length, special_info };
