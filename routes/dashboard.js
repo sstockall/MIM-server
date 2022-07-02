@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const knex = require('knex')(require('../knexfile'));
-const authentication = require('./middleware/authentication');
+const authentication = require('../middleware/authentication');
+const { v4: uuidv4 } = require('uuid');
 
 router.get("/", authentication, (req, res) => {
         knex('users')
@@ -32,16 +33,18 @@ router.get("/", authentication, (req, res) => {
 
 router.route('/records')
     .post((req, res) => {
-        const { id, user_id, location, width, length, special_info } = req.body;
-        const newMole = { id, user_id, location, width, length, special_info };
-        knex.insert(newMole).into("records").then(() => {
+        const newMole = {
+          ...req.body, 
+           id: uuidv4() 
+          };
           knex('records')
-          .then((data) => {
-            res.status(200).json(data);
+          .insert(newMole)
+          .then(() => {
+              res.status(201).send('New mole logged!');
           })
-        }).catch((err) =>
-          res.status(400).send(`Error adding mole: ${err}`)
-        );
+          .catch((error) => {
+              res.status(400).send(error);
+          });
       })
 
 router.route('/records/:recordId')

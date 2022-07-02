@@ -7,20 +7,10 @@ const authenticate = (req, res, next) => {
     jwt.verify(authToken, process.env.JWT_KEY, (err, decoded) => {
         if (err) {
             return res.status(401).send("Invalid auth token");
-        } 
-
-
-        // if(decoded.user_role==="Admin") {
-        //     decoded = {...decoded,TOP_SECRET_INFO:"Patrick is cool"}
-        //     req.user = decoded;
-        //     next();
-         else {
+        } else {
             req.user = decoded;
             next();
         }
-    
-    
-    
     }); 
 };
 

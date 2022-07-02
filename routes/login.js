@@ -18,7 +18,6 @@ router.route('/')
         .then((user) => {
             const checkPassword = bcrypt.compareSync(password, user.password);
 
-
             if (!checkPassword) {
                 return res.status(400).send('Invalid password, please try again')
             }

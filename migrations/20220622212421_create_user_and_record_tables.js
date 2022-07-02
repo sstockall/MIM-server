@@ -17,13 +17,15 @@ exports.up = function(knex) {
         table.timestamp('updated_at').defaultTo(knex.fn.now());
         table.string('width');
         table.string('length');
-        table.string('special_info')
+        table.string('texture');
+        table.string('coloring');
+        table.string('special_info');
         table
           .foreign('user_id')
           .references('id')
           .inTable('users')
           .onUpdate('CASCADE')
-          .onDelete('CASCADE');
+          .onDelete('CASCADE')
       });
   };
   
