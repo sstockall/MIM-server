@@ -20,7 +20,9 @@ router.get("/", authentication, (req, res) => {
                 'records.width',
                 'records.length',
                 'records.special_info',
-                'records.updated_at'
+                'records.updated_at',
+                'records.texture',
+                'records.coloring'
             )
             .where({'user_id': user.id})
             .then((records) => {
