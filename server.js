@@ -3,6 +3,7 @@ const cors = require('cors');
 const signupRoutes = require('./routes/signup');
 const loginRoutes = require('./routes/login');
 const dashboardRoutes = require('./routes/dashboard');
+const imageRoutes = require("./routes/images");
 
 const app = express();
 require('dotenv').config();
@@ -13,7 +14,8 @@ app.use(cors());
 
 app.use('/signup', signupRoutes);
 app.use('/login', loginRoutes);
-app.use('/dashboard', dashboardRoutes)
+app.use('/dashboard', dashboardRoutes);
+app.use("/images/", imageRoutes);
 
 
 app.listen(PORT, () => {

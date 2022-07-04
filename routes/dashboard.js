@@ -3,6 +3,7 @@ const router = express.Router();
 const knex = require('knex')(require('../knexfile'));
 const { v4: uuidv4 } = require('uuid');
 const authentication = require('./middleware/authentication');
+const multer  = require('multer');
 
 router.get("/", authentication, (req, res) => {
         knex('users')
@@ -42,7 +43,6 @@ router.route('/records')
         knex.insert(newMole).into("records").then(() => {
           knex('records')
           .then((data) => {
-            console.log(data)
             res.status(200).json(data);
           })
         }).catch((err) =>
