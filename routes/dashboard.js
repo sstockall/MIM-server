@@ -50,4 +50,31 @@ router.route('/records')
         );
       })
 
+  router.route('/:recordId')
+    .delete((req, res) => {
+      knex('records').where({'id': req.params.recordId}).del()
+      .then(() => {
+        res.status(200).send("Record was deleted")
+      })
+      .catch((err) => console.error(err))
+    })
+    .put((req,res) => {
+      knex('records')
+      .where({id: req.params.recordId})
+      .update({
+        location: req.body.location,
+        width: req.body.width,
+        length: req.body.length,
+        texture: req.body.texture,
+        coloring: req.body.coloring,
+        special_info: req.body.special_info
+      })
+      .then(() => {
+        console.log(req)
+        res.status(200).send("Record was updated")
+      })
+      .catch((err) => console.error(err))
+    })
+
+
 module.exports = router;
