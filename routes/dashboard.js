@@ -1,8 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const knex = require('knex')(require('../knexfile'));
-const authentication = require('../middleware/authentication');
 const { v4: uuidv4 } = require('uuid');
+const authentication = require('./middleware/authentication');
+const multer  = require('multer');
 
 router.get("/", authentication, (req, res) => {
         knex('users')
@@ -20,7 +21,9 @@ router.get("/", authentication, (req, res) => {
                 'records.width',
                 'records.length',
                 'records.special_info',
-                'records.updated_at'
+                'records.updated_at',
+                'records.texture',
+                'records.coloring'
             )
             .where({'user_id': user.id})
             .then((records) => {
@@ -34,9 +37,10 @@ router.get("/", authentication, (req, res) => {
 router.route('/records')
     .post((req, res) => {
         const newMole = {
-          ...req.body, 
-           id: uuidv4() 
-          };
+            ...req.body,
+            id: uuidv4()
+            };
+        knex.insert(newMole).into("records").then(() => {
           knex('records')
           .insert(newMole)
           .then(() => {
@@ -45,17 +49,33 @@ router.route('/records')
           .catch((error) => {
               res.status(400).send(error);
           });
-      })
-
-router.route('/records/:recordId')
-    .get((req, res) => {
-
+        })
     })
-    .put((req, res) => {
 
-    })
+  router.route('/:recordId')
     .delete((req, res) => {
-
+      knex('records').where({'id': req.params.recordId}).del()
+      .then(() => {
+        res.status(200).send("Record was deleted")
+      })
+      .catch((err) => console.error(err))
+    })
+    .put((req,res) => {
+      knex('records')
+      .where({id: req.params.recordId})
+      .update({
+        location: req.body.location,
+        width: req.body.width,
+        length: req.body.length,
+        texture: req.body.texture,
+        coloring: req.body.coloring,
+        special_info: req.body.special_info
+      })
+      .then(() => {
+        console.log(req)
+        res.status(200).send("Record was updated")
+      })
+      .catch((err) => console.error(err))
     })
 
 module.exports = router;
