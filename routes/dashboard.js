@@ -17,6 +17,7 @@ router.get("/", authentication, (req, res) => {
                 'users.first_name',
                 'users.last_name',
                 'records.id AS record_id',
+                'records.image_url',
                 'records.location',
                 'records.width',
                 'records.length',
@@ -41,16 +42,12 @@ router.route('/records')
             id: uuidv4()
             };
         knex.insert(newMole).into("records").then(() => {
-          knex('records')
-          .insert(newMole)
-          .then(() => {
-              res.status(201).send('New mole logged!');
+            res.status(201).send('New mole logged!');
           })
           .catch((error) => {
               res.status(400).send(error);
           });
         })
-    })
 
   router.route('/:recordId')
     .delete((req, res) => {

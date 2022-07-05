@@ -15,6 +15,7 @@ exports.up = function(knex) {
         table.string('user_id').notNullable();
         table.string('location' ).notNullable();
         table.timestamp('updated_at').defaultTo(knex.fn.now());
+        table.string('image_url');
         table.string('width');
         table.string('length');
         table.string('texture');

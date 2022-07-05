@@ -15,7 +15,7 @@ app.use(cors());
 app.use('/signup', signupRoutes);
 app.use('/login', loginRoutes);
 app.use('/dashboard', dashboardRoutes);
-app.use("/images/", imageRoutes);
+app.use("/images", imageRoutes);
 
 
 app.listen(PORT, () => {
