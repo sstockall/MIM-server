@@ -69,7 +69,6 @@ router.route('/records')
         special_info: req.body.special_info
       })
       .then(() => {
-        console.log(req)
         res.status(200).send("Record was updated")
       })
       .catch((err) => console.error(err))
