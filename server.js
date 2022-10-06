@@ -21,6 +21,6 @@ app.use("/images", imageRoutes);
 app.use("/lesions", lesionsRoutes)
 
 
-app.listen(PORT, () => {
+app.listen(process.env.PORT || 8080, () => {
     console.log(`Server listening on port ${PORT}`);
 })
